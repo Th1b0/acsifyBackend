@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Information</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+      .container {
+        max-width: 800px;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #333;
+        margin-bottom: 20px;
+      }
+      .event {
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+      }
+      .event:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+      }
+      .event h2 {
+        color: #555;
+        margin-bottom: 5px;
+      }
+      .event p {
+        color: #777;
+      }
+      .order {
+        margin-bottom: 20px;
+      }
+      .order h3 {
+        color: #333;
+        margin-bottom: 5px;
+      }
+      .order ul {
+        list-style-type: none;
+        padding: 0;
+      }
+      .order li {
+        margin-bottom: 5px;
+        color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>User Information</h1>
+      <div class="user-info">
+        <p>Name: <strong id="name"></strong></p>
+        <p>Email: <strong id="email"></strong></p>
+      </div>
+      <div class="events" id="eventsVisited">
+        <h2>Events Visited:</h2>
+      </div>
+      <div class="events" id="eventsCreated">
+        <h2>Events Created:</h2>
+      </div>
+      <div class="orders" id="orders">
+        <h2>Orders:</h2>
+      </div>
+    </div>
+
+    <script>
+      // Fetch data
+      fetch("http://localhost:5500/api/user/data")
+        .then((response) => response.json())
+        .then((data) => {
+          // Update user information
+          document.getElementById("name").textContent = data.data.name;
+          document.getElementById("email").textContent = data.data.email;
+
+          // Render visited events
+          const eventsVisitedContainer =
+            document.getElementById("eventsVisited");
+          data.data.visits.forEach((visit) => {
+            const eventVisited = document.createElement("div");
+            eventVisited.classList.add("event");
+            eventVisited.innerHTML = `
+            <h2>${visit.event.name}</h2>
+            <p>Description: ${visit.event.description}</p>
+          `;
+            eventsVisitedContainer.appendChild(eventVisited);
+          });
+
+          // Render created events
+          const eventsCreatedContainer =
+            document.getElementById("eventsCreated");
+          data.data.createdEvents.forEach((event) => {
+            const eventCreated = document.createElement("div");
+            eventCreated.classList.add("event");
+            eventCreated.innerHTML = `
+            <h2>${event.name}</h2>
+            <p>Description: ${event.description}</p>
+   
+            <p>Created At: ${event.createdAt}</p>
+          `;
+            eventsCreatedContainer.appendChild(eventCreated);
+          });
+
+          // Render orders
+          const ordersContainer = document.getElementById("orders");
+          data.data.orders.forEach((order) => {
+            const orderElement = document.createElement("div");
+            orderElement.classList.add("order");
+            orderElement.innerHTML = `
+            <h3>Order ID: ${order.id}</h3>
+            <ul>
+              ${order.products
+                .map(
+                  (product) => `
+                <li>Product: ${product.name}</li>
+                <li>Description: ${product.description}</li>
+                <li>Price: ${product.price}</li>
+              `
+                )
+                .join("")}
+            </ul>
+          `;
+            ordersContainer.appendChild(orderElement);
+          });
+        })
+        .catch((error) => console.error("Error fetching user data:", error));
+    </script>
+  </body>
+</html>

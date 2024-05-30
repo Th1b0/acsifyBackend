@@ -1,0 +1,87 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(uuid())
+  email         String    @unique
+  surname       String
+  name          String
+  hash          String
+  createdEvents Event[]   @relation("creator")
+  visits        Visit[]
+  orders        Order[]
+  Session       Session[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Visit {
+  id        String   @id @default(uuid())
+  event     Event    @relation(fields: [eventId], references: [id])
+  eventId   String
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  balance   Float
+  type      String
+  pin       String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Order     Order[]
+}
+
+model Event {
+  id          String    @id @default(uuid())
+  name        String
+  description String
+  category    String?
+  tickets     Float
+  cover       String
+  startDate   String
+  endData     String
+  creator     User      @relation("creator", fields: [creatorId], references: [id])
+  creatorId   String
+  visits      Visit[]
+  products    Product[] // Changed from Product to Product[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  workerCode  String?
+}
+
+model Product {
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  price       Float
+  event       Event    @relation(fields: [eventId], references: [id])
+  eventId     String
+  orders      Order[] // Changed from Order to Order[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Order {
+  id        String    @id @default(uuid())
+  products  Product[] // Changed from Product to Product[]
+  user      User      @relation(fields: [userId], references: [id])
+  userId    String
+  visit     Visit?    @relation(fields: [visitId], references: [id]) // Changed from Visit to Visit?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  visitId   String?
+}
+
+model Session {
+  id        String   @id @default(uuid())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  locations String[]
+  valid     Boolean
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

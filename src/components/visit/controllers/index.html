@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/global.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <title>Rubys</title>
+  </head>
+  <body>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        box-sizing: border-box;
+        background-color: #efcec9;
+        font-family: "Rubik", sans-serif;
+      }
+
+      .inner-container {
+        width: 90%;
+        margin-inline: auto;
+      }
+
+      .inner-nav {
+        padding-block: 22px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .inner-nav a {
+        color: #c18d0b;
+        text-decoration: none;
+      }
+
+      .inner-nav i {
+        font-weight: bolder;
+        font-size: 1.75em;
+        cursor: pointer;
+        color: #c18d0b;
+      }
+
+      .header {
+        background-color: #f9e5e0;
+        padding-block: 4em;
+      }
+
+      .inner-header {
+        text-align: left;
+      }
+
+      .inner-header p {
+        line-height: 25.6px;
+        color: #191919;
+        margin-top: 1em;
+        font-weight: 300;
+        font-size: 16px;
+      }
+
+      .header h1 {
+        margin-inline: auto;
+        color: #c18d0b;
+        font-size: 2.5em;
+        letter-spacing: 0.2em;
+      }
+      .header button {
+        margin-top: 2em;
+        background-color: #c18d0b;
+        border: none;
+        font-size: 1.1em;
+        padding-block: 0.8em;
+        width: 50%;
+        color: white;
+        font-weight: bold;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+
+      .inner-header img {
+        transform: rotate(-3deg);
+        width: 90%;
+        border: 3px solid white;
+        box-shadow: -7px -7px #e6a3a3;
+        margin-top: 3em;
+      }
+      .img-container {
+        display: flex;
+        justify-content: center;
+      }
+
+      .wave {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        top: -1px;
+      }
+
+      .wave svg {
+        position: relative;
+        display: block;
+        width: calc(250% + 1.3px);
+        height: 150px;
+      }
+
+      .wave .shape-fill {
+        fill: #f9e5e0;
+      }
+
+      .swiper {
+        width: 90%;
+        height: 100%;
+        margin-top: 6em;
+      }
+
+      .swiper-slide img {
+        display: block;
+      }
+
+      .img-slid {
+        width: 100%;
+        height: auto;
+        border: 5px #f9e5e0 solid;
+        border-radius: 10px;
+      }
+
+      .info {
+        background-color: white;
+        padding-block: 6em;
+        margin-top: 6em;
+      }
+
+      .swiper-pagination-bullet-active {
+        background-color: #efcec9;
+      }
+
+      .hero3 {
+        padding-block: 2em;
+        text-align: center;
+        padding-block: 1rem;
+        background-color: white;
+        border-block: 3px solid #b8860b;
+        width: 90%;
+        margin-inline: auto;
+        box-shadow: 7px 7px #e6a3a3;
+      }
+      .hero3 h2 {
+        text-transform: uppercase;
+        color: #e6a3a3;
+        font-weight: bold;
+        font-size: 2rem;
+        margin-block: 1rem;
+      }
+      .hero3 p {
+        margin-inline: 10px;
+        margin-block: 0.5em;
+      }
+
+      .hero3 hr {
+        margin-inline: auto;
+        width: 50%;
+        color: #e6a3a3;
+        background-color: #e6a3a3;
+        border: solid 1px #e6a3a3;
+      }
+
+      .menu {
+        margin-top: 6rem;
+        background-image: url("/img/ijs2.jpg");
+        text-align: center;
+        padding-block: 1rem;
+        background-color: white;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        text-align: center;
+        height: 22.5vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5rem;
+        width: 90vw;
+        margin-inline: auto;
+        box-shadow: -7px -7px #e6a3a3;
+        backdrop-filter: blur(2px);
+      }
+
+      .menu a {
+        text-align: center;
+        color: #e6a3a3;
+        font-weight: bolder;
+        z-index: 1;
+        backdrop-filter: blur(1px);
+        border-radius: 100%;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+      }
+
+      @media screen and (min-width: 900px) {
+        .inner-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        .inner-header img {
+          transform: rotate(-3deg);
+          width: 100%;
+          border: 3px solid white;
+          box-shadow: -7px -7px #e6a3a3;
+          margin-top: 3em;
+        }
+
+        .img-container {
+          justify-content: end;
+          width: 35%;
+        }
+
+        .header-content {
+          width: 45%;
+        }
+        .inner-header h1 {
+          font-size: 4em;
+        }
+
+        .inner-header p {
+          font-size: 1.25em;
+        }
+        .inner-header button {
+          width: 50%;
+        }
+
+        .inner-container {
+          width: 70%;
+        }
+        .inner-info {
+          display: flex;
+        }
+        .hero3 {
+          width: 40%;
+        }
+        .menu {
+          width: 40%;
+        }
+      }
+    </style>
+    <nav class="container">
+      <div class="inner-nav inner-container">
+        <a class="logo" style="font-family: 'Rubik', sans-serif" href=""
+          >Logo</a
+        >
+        <i class="fa-solid fa-bars"></i>
+      </div>
+    </nav>
+    <section class="header">
+      <div class="inner-container inner-header">
+        <div class="header-content">
+          <h1 class="animate__animated animate__fadeInDown animate__delay-0s">
+            RUBYS
+          </h1>
+          <p class="animate__animated animate__fadeInDown animate__delay-1s">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero
+            harum in tempore alias consectetur? In, inventore facilis voluptate
+            dolorem atque nam repudiandae numquam. Nostrum ipsam ex temporibus
+            eaque quasi odio.
+          </p>
+          <div
+            class="animate__animated animate__fadeInDown animate__delay-2s animate-fast"
+          >
+            <button class="animate__animated animate__delay-2s">
+              Ontdek meer
+            </button>
+          </div>
+        </div>
+        <div
+          class="img-container animate__animated animate__fadeInDown animate__delay-3s"
+        >
+          <img src="./img/ijs1.jpg" alt="" />
+        </div>
+      </div>
+    </section>
+    <div class="wave">
+      <svg
+        data-name="Layer 1"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1200 120"
+        preserveAspectRatio="none"
+      >
+        <path
+          d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
+          opacity=".25"
+          class="shape-fill"
+        ></path>
+        <path
+          d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z"
+          opacity=".5"
+          class="shape-fill"
+        ></path>
+        <path
+          d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"
+          class="shape-fill"
+        ></path>
+      </svg>
+    </div>
+
+    <section class="info">
+      <div class="inner-container inner-info">
+        <div class="hero3">
+          <h2>Openings uren</h2>
+          <p>Ma 10:00 - 18:00</p>
+          <hr />
+          <p>Ma 10:00 - 18:00</p>
+          <hr />
+          <p>Ma 10:00 - 18:00</p>
+          <hr />
+          <p>Ma 10:00 - 18:00</p>
+          <hr />
+          <p>Ma 10:00 - 18:00</p>
+          <hr />
+          <p>Ma 10:00 - 18:00</p>
+          <hr />
+          <p>Ma 10:00 - 18:00</p>
+        </div>
+        <div class="menu">
+          <a href="/menu"><h2>MENU</h2></a>
+        </div>
+      </div>
+    </section>
+  </body>
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      spaceBetween: 30,
+      centeredSlides: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+      },
+    });
+  </script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+</html>
