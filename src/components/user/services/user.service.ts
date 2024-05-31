@@ -20,7 +20,6 @@ export async function userService(id: string) {
             products: {
               select: {
                 name: true,
-
                 price: true,
               },
             },
