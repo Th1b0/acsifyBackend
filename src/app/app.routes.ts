@@ -5,6 +5,7 @@ import { userRouter } from "../components/user/user.routes";
 import { authorizeRouter } from "../components/authorize/authorize.routes";
 import { guard } from "../middleware/authenticate/guard/guard";
 import { visitRouter } from "../components/visit/visit.routes";
+import { productRouer } from "../components/product/product.routes";
 
 const router: Router = Router();
 
@@ -18,6 +19,7 @@ function bundleRoutes(router: Router) {
   router.use("/event", eventRouter);
   router.use("/user", guard, userRouter);
   router.use("/visit", visitRouter);
+  router.use("/product", productRouer);
 }
 
 bundleRoutes(router);
