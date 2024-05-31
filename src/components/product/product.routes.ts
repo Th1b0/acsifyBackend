@@ -12,7 +12,7 @@ initMiddleware(router);
 
 function bundleRoutes(router: Router) {
   router.get("/get", get);
-  router.post("/create", endpointValidation(["name,price"]), create);
+  router.post("/create", endpointValidation(["name", "price"]), create);
 }
 
 bundleRoutes(router);

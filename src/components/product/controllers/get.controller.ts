@@ -19,7 +19,7 @@ export async function get(req: Request, res: Response, next: NextFunction) {
     }
     const data = await prisma.product.findMany({
       where: {
-        eventId,
+        eventId: eventId.id,
       },
       select: {
         name: true,
